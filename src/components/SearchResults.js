@@ -3,7 +3,7 @@ import React from "react";
 const SearchResults = props => {
   return (
     <div className="table-responsive">
-      <table class="table table-bordered">
+      <table className="table table-bordered">
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -17,6 +17,13 @@ const SearchResults = props => {
           </tr>
         </thead>
         <tbody>
+          <tr>
+            {props.details.map((item, index) => (
+              <tr>
+                <th>{item.id}</th>
+              </tr>
+            ))}
+          </tr>
           <tr>
             <th scope="row">11</th>
             <td>Mr</td>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import FakeBookings from "./data/fakeBookings.json";
 
 // Import Components
 import Bookings from "./components/Bookings";
@@ -17,7 +18,7 @@ const App = () => {
     <div className="App">
       <Heading />
       <TouristInfoCards />
-      <Bookings />
+      <Bookings results={FakeBookings} />
       <Footer details={hotelDetails} />
     </div>
   );
