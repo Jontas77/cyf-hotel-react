@@ -1,4 +1,5 @@
 import React from "react";
+import TableRows from "./TableRows";
 
 const SearchResults = props => {
   return (
@@ -14,36 +15,11 @@ const SearchResults = props => {
             <th scope="col">Room Id</th>
             <th scope="col">Check In Date</th>
             <th scope="col">Check Out Date</th>
+            <th scope="col">Number of Nights</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {props.details.map((item, index) => (
-              <tr>
-                <th>{item.id}</th>
-              </tr>
-            ))}
-          </tr>
-          <tr>
-            <th scope="row">11</th>
-            <td>Mr</td>
-            <td>Joseph</td>
-            <td>McGee</td>
-            <td>jmgee@example.com</td>
-            <td>249</td>
-            <td>2018-11-03</td>
-            <td>2018-11-10</td>
-          </tr>
-          <tr>
-            <th scope="row">12</th>
-            <td>Mr</td>
-            <td>Sam</td>
-            <td>Burger</td>
-            <td>sam@example.com</td>
-            <td>65</td>
-            <td>2018-12-16</td>
-            <td>2018-12-23</td>
-          </tr>
+          <TableRows table={props.details} />
         </tbody>
       </table>
     </div>
