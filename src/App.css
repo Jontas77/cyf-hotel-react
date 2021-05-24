@@ -82,3 +82,8 @@ tr {
 .card {
   width: 18rem;
 }
+
+.tableSelected {
+  background-color: green;
+  color: #fff;
+}

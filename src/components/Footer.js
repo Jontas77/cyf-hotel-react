@@ -1,10 +1,10 @@
 import React from "react";
 
-const Footer = props => {
+const Footer = ({ details }) => {
   return (
     <div className="footer">
       <ul>
-        {props.details.map((item, index) => (
+        {details.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>

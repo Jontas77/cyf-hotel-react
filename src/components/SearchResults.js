@@ -1,7 +1,7 @@
 import React from "react";
 import TableRows from "./TableRows";
 
-const SearchResults = props => {
+const SearchResults = ({ details }) => {
   return (
     <div className="table-responsive">
       <table className="table table-bordered">
@@ -19,7 +19,7 @@ const SearchResults = props => {
           </tr>
         </thead>
         <tbody>
-          <TableRows table={props.details} />
+          <TableRows table={details} />
         </tbody>
       </table>
     </div>

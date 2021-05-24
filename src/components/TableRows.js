@@ -1,8 +1,12 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 
-const TableRows = props => {
-  return props.table.map((user, index) => {
+const TableRows = ({ table }) => {
+  const [colour, setColour] = useState("white");
+
+  const [selectRow, setSelectRow] = useState(-1);
+
+  return table.map((user, index) => {
     const {
       id,
       title,
@@ -17,8 +21,16 @@ const TableRows = props => {
     const start = moment(checkInDate);
     const end = moment(checkOutDate);
 
+    const changeColor = () => {
+      setColour("blue");
+    };
+
     return (
-      <tr key={index}>
+      <tr
+        key={index}
+        className={selectRow === index ? "tableSelected" : ""}
+        onClick={changeColor}
+      >
         <td>{id}</td>
         <td>{title}</td>
         <td>{firstName}</td>

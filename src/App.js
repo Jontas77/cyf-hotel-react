@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import FakeBookings from "./data/fakeBookings.json";
 
 // Import Components
 import Bookings from "./components/Bookings";
 import Heading from "./components/Heading";
 import TouristInfoCards from "./components/TouristInfoCards";
 import Footer from "./components/Footer";
+import Restaurant from "./components/Restaurant";
 
 const App = () => {
   const hotelDetails = [
@@ -18,7 +18,8 @@ const App = () => {
     <div className="App">
       <Heading />
       <TouristInfoCards />
-      <Bookings results={FakeBookings} />
+      <Bookings />
+      <Restaurant />
       <Footer details={hotelDetails} />
     </div>
   );
