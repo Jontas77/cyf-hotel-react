@@ -83,7 +83,30 @@ tr {
   width: 18rem;
 }
 
-.tableSelected {
-  background-color: green;
-  color: #fff;
+.red {
+  background-color: #e53e3e;
+}
+
+.orange {
+  background-color: #dd6b20;
+}
+
+.yellow {
+  background-color: #d69e2e;
+}
+
+.green {
+  background-color: #38a169;
+}
+
+.blue {
+  background-color: #3182ce;
+}
+
+.purple {
+  background-color: #805ad5;
+}
+
+.pink {
+  background-color: #d53f8c;
 }

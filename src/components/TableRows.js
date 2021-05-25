@@ -1,10 +1,9 @@
 import moment from "moment";
 import React, { useState } from "react";
 
-const TableRows = ({ table }) => {
-  const [colour, setColour] = useState("white");
-
-  const [selectRow, setSelectRow] = useState(-1);
+const TableRows = ({ table, color }) => {
+  const [colour, setColour] = useState(color);
+  const [selectRow, setSelectRow] = useState(false);
 
   return table.map((user, index) => {
     const {
@@ -22,14 +21,15 @@ const TableRows = ({ table }) => {
     const end = moment(checkOutDate);
 
     const changeColor = () => {
-      setColour("blue");
+      const newColor = colour == color ? "blue" : color;
+      setColour(newColor);
     };
 
     return (
       <tr
         key={index}
-        className={selectRow === index ? "tableSelected" : ""}
-        onClick={changeColor}
+        className={`${colour} ${index} ${selectRow}`}
+        onClick={e => e.target && changeColor}
       >
         <td>{id}</td>
         <td>{title}</td>
