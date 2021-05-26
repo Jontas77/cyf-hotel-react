@@ -85,10 +85,12 @@ tr {
 
 .red {
   background-color: #e53e3e;
+  color: white;
 }
 
 .orange {
   background-color: #dd6b20;
+  color: white;
 }
 
 .yellow {
@@ -97,16 +99,29 @@ tr {
 
 .green {
   background-color: #38a169;
+  color: white;
 }
 
 .blue {
   background-color: #3182ce;
+  color: white;
 }
 
 .purple {
   background-color: #805ad5;
+  color: white;
 }
 
 .pink {
   background-color: #d53f8c;
+  color: rgb(114, 114, 114);
+}
+
+.toggle {
+  background-color: white;
+}
+
+.toggle.orange {
+  background-color: #dd6b20;
+  color: white;
 }

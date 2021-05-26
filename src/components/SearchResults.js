@@ -19,7 +19,7 @@ const SearchResults = ({ details }) => {
           </tr>
         </thead>
         <tbody>
-          <TableRows table={details} color="white" />
+          <TableRows table={details} />
         </tbody>
       </table>
     </div>
