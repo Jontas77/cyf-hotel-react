@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import TableRows from "./TableRows";
 
 const SearchResults = ({ details }) => {
+  const [value, setValue] = useState(false);
+  const [selected, setSelected] = useState("");
+
   return (
     <div className="table-responsive">
       <table className="table table-bordered">
@@ -19,7 +22,14 @@ const SearchResults = ({ details }) => {
           </tr>
         </thead>
         <tbody>
-          <TableRows table={details} />
+          <TableRows
+            table={details}
+            isOn={value}
+            handleToggle={() => setValue(!value)}
+            onColor="orange"
+            isSelected={selected}
+            selectRow={id => setSelected(id)}
+          />
         </tbody>
       </table>
     </div>
