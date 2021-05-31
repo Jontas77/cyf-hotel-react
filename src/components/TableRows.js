@@ -43,6 +43,9 @@ const TableRows = ({
         <td>{checkInDate}</td>
         <td>{checkOutDate}</td>
         <td>{moment.duration(end.diff(start)).asDays()}</td>
+        <td>
+          <button className="btn btn-primary">Show Profile</button>
+        </td>
       </tr>
     );
   });
