@@ -14,13 +14,16 @@ const App = () => {
     "hello@fakehotel.com",
     "0123 456789"
   ];
+
+  const uniqueKeys = Math.floor(Math.random() * 1000000);
+
   return (
     <div className="App">
-      <Heading />
-      <TouristInfoCards />
-      <Bookings />
-      <Restaurant />
-      <Footer details={hotelDetails} />
+      <Heading keys={uniqueKeys} />
+      <TouristInfoCards keys={uniqueKeys} />
+      <Bookings keys={uniqueKeys} />
+      <Restaurant keys={uniqueKeys} />
+      <Footer details={hotelDetails} keys={uniqueKeys} />
     </div>
   );
 };

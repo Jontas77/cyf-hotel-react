@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import TableRows from "./TableRows";
+import CustomerProfile from "./CustomerProfile";
 
-const SearchResults = ({ details }) => {
+const SearchResults = ({ details, keys }) => {
   const [value, setValue] = useState(false);
   const [selected, setSelected] = useState("");
+  const customerID = details.map(customer => customer.id);
 
   return (
     <div className="table-responsive">
+      {customerID.map(
+        id => selected === id && value && <CustomerProfile id={id} key={keys} />
+      )}
       <table className="table table-bordered">
         <thead>
           <tr>

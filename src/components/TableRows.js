@@ -9,6 +9,8 @@ const TableRows = ({
   isSelected,
   selectRow
 }) => {
+  const handleProfile = () => {};
+
   return table.map(user => {
     const {
       id,
@@ -44,7 +46,15 @@ const TableRows = ({
         <td>{checkOutDate}</td>
         <td>{moment.duration(end.diff(start)).asDays()}</td>
         <td>
-          <button className="btn btn-primary">Show Profile</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              handleToggle();
+              selectRow(id);
+            }}
+          >
+            Show Profile
+          </button>
         </td>
       </tr>
     );
