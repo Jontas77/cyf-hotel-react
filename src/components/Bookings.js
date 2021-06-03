@@ -4,23 +4,19 @@ import SearchResults from "./SearchResults";
 
 const Bookings = ({ keys }) => {
   const [bookings, setBookings] = useState([]);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch(`https://cyf-react.glitch.me/delayed`)
-      .then(response => {
-        if (response.status >= 200 || response.status <= 299) {
-          return response.json();
-        } else {
-          console.log("API has an error");
-        }
-      })
+      .then(response => response.json())
       .then(data => {
         setBookings(data);
         setLoading(true);
       })
-      .catch(error => console.error(error));
-    setLoading(true);
+      .catch(err => {
+        err = setError("Whooops Something Went Wrong!!");
+      });
   }, []);
 
   const search = searchVal => {
@@ -39,7 +35,12 @@ const Bookings = ({ keys }) => {
     <div className="App-content">
       <div className="container">
         <Search search={search} keys={keys} />
-        {loading ? (
+
+        {error ? (
+          <span className="text-center">
+            <h3>{error}</h3>
+          </span>
+        ) : loading ? (
           <SearchResults details={bookings} keys={keys} />
         ) : (
           <span className="text-center">

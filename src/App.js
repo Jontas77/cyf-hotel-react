@@ -7,6 +7,7 @@ import Heading from "./components/Heading";
 import TouristInfoCards from "./components/TouristInfoCards";
 import Footer from "./components/Footer";
 import Restaurant from "./components/Restaurant";
+import Form from "./components/Form";
 
 const App = () => {
   const hotelDetails = [
@@ -20,9 +21,12 @@ const App = () => {
   return (
     <div className="App">
       <Heading keys={uniqueKeys} />
-      <TouristInfoCards keys={uniqueKeys} />
-      <Bookings keys={uniqueKeys} />
-      <Restaurant keys={uniqueKeys} />
+      <div className="page-container">
+        <TouristInfoCards keys={uniqueKeys} />
+        <Bookings keys={uniqueKeys} />
+        <Restaurant keys={uniqueKeys} />
+        <Form />
+      </div>
       <Footer details={hotelDetails} keys={uniqueKeys} />
     </div>
   );
