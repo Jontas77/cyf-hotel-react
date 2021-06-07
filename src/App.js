@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 // Import Components
@@ -16,6 +16,34 @@ const App = () => {
     "0123 456789"
   ];
 
+  const [state, setState] = useState({
+    id: "",
+    title: "",
+    firstName: "",
+    surname: "",
+    email: "",
+    roomId: "",
+    checkInDate: "",
+    checkOutDate: ""
+  });
+
+  const [data, setData] = useState([]);
+
+  const handleChange = e => {
+    let nameValue = e.target.name;
+    let inputValue = e.target.value;
+    setState(prevState => ({
+      ...prevState,
+      [nameValue]: inputValue
+    }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setData(value => [...value, state]);
+    e.target.reset();
+  };
+
   const uniqueKeys = Math.floor(Math.random() * 1000000);
 
   return (
@@ -23,9 +51,14 @@ const App = () => {
       <Heading keys={uniqueKeys} />
       <div className="page-container">
         <TouristInfoCards keys={uniqueKeys} />
-        <Bookings keys={uniqueKeys} />
+        <Bookings keys={uniqueKeys} formData={data} />
         <Restaurant keys={uniqueKeys} />
-        <Form />
+        <Form
+          userData={state}
+          handleChange={handleChange}
+          formData={data}
+          handleSubmit={handleSubmit}
+        />
       </div>
       <Footer details={hotelDetails} keys={uniqueKeys} />
     </div>

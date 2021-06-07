@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Search from "./Search.js";
 import SearchResults from "./SearchResults";
 
-const Bookings = ({ keys }) => {
+const Bookings = ({ keys, formData }) => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ const Bookings = ({ keys }) => {
             <h3>{error}</h3>
           </span>
         ) : loading ? (
-          <SearchResults details={bookings} keys={keys} />
+          <SearchResults details={bookings} keys={keys} formData={formData} />
         ) : (
           <span className="text-center">
             <h3>Loading.....</h3>

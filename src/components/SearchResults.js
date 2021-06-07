@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import TableRows from "./TableRows";
 import CustomerProfile from "./CustomerProfile";
 
-const SearchResults = ({ details, keys }) => {
+const SearchResults = ({ details, keys, formData }) => {
   const [value, setValue] = useState(false);
   const [selected, setSelected] = useState("");
   const customerID = details.map(customer => customer.id);
 
   return (
-    <div className="table-responsive">
+    <div className="table-responsive" key={keys}>
       {customerID.map(
         id => selected === id && value && <CustomerProfile id={id} key={keys} />
       )}
@@ -27,7 +27,7 @@ const SearchResults = ({ details, keys }) => {
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody key={keys}>
           <TableRows
             table={details}
             isOn={value}
@@ -35,6 +35,8 @@ const SearchResults = ({ details, keys }) => {
             onColor="orange"
             isSelected={selected}
             selectRow={id => setSelected(id)}
+            formData={formData}
+            keys={keys}
           />
         </tbody>
       </table>

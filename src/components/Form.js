@@ -1,51 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Form = () => {
-  const [state, setState] = useState({
-    firstName: "",
-    surname: "",
-    title: "",
-    email: "",
-    roomId: "",
-    checkInDate: "",
-    checkOutDate: ""
-  });
-
+const Form = ({ userData, handleChange, formData, handleSubmit }) => {
   const {
+    id,
+    title,
     firstName,
     surname,
-    title,
     email,
     roomId,
     checkInDate,
     checkOutDate
-  } = state;
-
-  const handleChange = e => {
-    let value = e.target.value;
-    let nameValue = e.target.name;
-    if (
-      nameValue === "firstName" ||
-      nameValue === "surname" ||
-      nameValue === "title" ||
-      nameValue === "email" ||
-      nameValue === "roomId" ||
-      nameValue === "checkInDate" ||
-      nameValue === "checkOutDate"
-    ) {
-      setState(value);
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    alert(`Submitting Name`);
-  };
+  } = userData;
 
   return (
     <div className="form mb-3">
       <h3>Create Booking</h3>
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            type="number"
+            className="form-control"
+            name="id"
+            value={id}
+            placeholder="ID"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            name="title"
+            value={title}
+            placeholder="Title"
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className="form-group">
           <input
             type="text"
@@ -68,17 +60,7 @@ const Form = () => {
             required
           />
         </div>
-        <div className="form-group">
-          <input
-            type="text"
-            className="form-control"
-            name="title"
-            value={title}
-            placeholder="Title"
-            onChange={handleChange}
-            required
-          />
-        </div>
+
         <div className="form-group">
           <input
             type="email"
