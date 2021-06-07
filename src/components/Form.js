@@ -6,28 +6,40 @@ const Form = () => {
     surname: "",
     title: "",
     email: "",
-    roomID: "",
+    roomId: "",
     checkInDate: "",
     checkOutDate: ""
   });
 
+  const {
+    firstName,
+    surname,
+    title,
+    email,
+    roomId,
+    checkInDate,
+    checkOutDate
+  } = state;
+
   const handleChange = e => {
     let value = e.target.value;
-    setState({
-      firstName: value,
-      surname: value,
-      title: value,
-      email: value,
-      roomID: value,
-      checkInDate: value,
-      checkOutDate: value
-    });
-    console.log(`${value}`);
+    let nameValue = e.target.name;
+    if (
+      nameValue === "firstName" ||
+      nameValue === "surname" ||
+      nameValue === "title" ||
+      nameValue === "email" ||
+      nameValue === "roomId" ||
+      nameValue === "checkInDate" ||
+      nameValue === "checkOutDate"
+    ) {
+      setState(value);
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    alert(`Submitting Name`);
   };
 
   return (
@@ -39,6 +51,7 @@ const Form = () => {
             type="text"
             className="form-control"
             name="firstName"
+            value={firstName}
             placeholder="First Name"
             onChange={handleChange}
             required
@@ -49,6 +62,7 @@ const Form = () => {
             type="text"
             className="form-control"
             name="surname"
+            value={surname}
             placeholder="Surname"
             onChange={handleChange}
             required
@@ -59,6 +73,7 @@ const Form = () => {
             type="text"
             className="form-control"
             name="title"
+            value={title}
             placeholder="Title"
             onChange={handleChange}
             required
@@ -69,6 +84,7 @@ const Form = () => {
             type="email"
             className="form-control"
             name="email"
+            value={email}
             placeholder="Email Address"
             onChange={handleChange}
             required
@@ -78,7 +94,8 @@ const Form = () => {
           <input
             type="number"
             className="form-control"
-            name="roomID"
+            name="roomId"
+            value={roomId}
             placeholder="Room ID"
             onChange={handleChange}
             required
@@ -89,6 +106,7 @@ const Form = () => {
             type="date"
             className="form-control"
             name="checkInDate"
+            value={checkInDate}
             placeholder="Check in date"
             onChange={handleChange}
             required
@@ -99,6 +117,7 @@ const Form = () => {
             type="date"
             className="form-control"
             name="checkOutDate"
+            value={checkOutDate}
             placeholder="Check out date"
             onChange={handleChange}
             required
