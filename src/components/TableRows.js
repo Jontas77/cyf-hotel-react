@@ -9,62 +9,37 @@ const TableRows = ({
   isSelected,
   selectRow,
   formData,
-  keys
+  sortType,
+  sort
 }) => {
-  return table.map(user => {
-    const {
-      id,
-      title,
-      firstName,
-      surname,
-      email,
-      roomId,
-      checkInDate,
-      checkOutDate
-    } = user;
+  return (
+    <>
+      {table.sort(sortType[sort].fn).map(user => {
+        const {
+          id,
+          title,
+          firstName,
+          surname,
+          email,
+          roomId,
+          checkInDate,
+          checkOutDate
+        } = user;
 
-    const start = moment(checkInDate);
-    const end = moment(checkOutDate);
+        const start = moment(checkInDate);
+        const end = moment(checkOutDate);
 
-    return (
-      <>
-        <tr
-          key={id}
-          className="table-row"
-          style={{ backgroundColor: isSelected === id && isOn && onColor }}
-          onClick={() => {
-            handleToggle();
-            selectRow(id);
-          }}
-        >
-          <td>{id}</td>
-          <td>{title}</td>
-          <td>{firstName}</td>
-          <td>{surname}</td>
-          <td>{email}</td>
-          <td>{roomId}</td>
-          <td>{checkInDate}</td>
-          <td>{checkOutDate}</td>
-          <td>{moment.duration(end.diff(start)).asDays()}</td>
-          <td>
-            <button className="btn btn-primary" onClick={handleToggle}>
-              Show Profile
-            </button>
-          </td>
-        </tr>
-        {formData.map(table => {
-          const {
-            id,
-            title,
-            firstName,
-            surname,
-            email,
-            roomId,
-            checkInDate,
-            checkOutDate
-          } = table;
-          return (
-            <tr key={keys}>
+        return (
+          <>
+            <tr
+              key={id}
+              className="table-row"
+              style={{ backgroundColor: isSelected === id && isOn && onColor }}
+              onClick={() => {
+                handleToggle();
+                selectRow(id);
+              }}
+            >
               <td>{id}</td>
               <td>{title}</td>
               <td>{firstName}</td>
@@ -80,28 +55,55 @@ const TableRows = ({
                 </button>
               </td>
             </tr>
-          );
-        })}
-      </>
-    );
-  });
-};
+          </>
+        );
+      })}
+      {formData.sort(sortType[sort].fn).map(table => {
+        const {
+          id,
+          title,
+          firstName,
+          surname,
+          email,
+          roomId,
+          checkInDate,
+          checkOutDate
+        } = table;
 
-// {formData.map((item, i) => (
-//   <table className="table table-bordered mb-0">
-//     <tbody>
-//   <tr key={i}>
-//     <td>{id}</td>
-//     <td>{title}</td>
-//     <td>{firstName}</td>
-//     <td>{surname}</td>
-//     <td>{email}</td>
-//     <td>{roomId}</td>
-//     <td>{checkInDate}</td>
-//     <td>{checkOutDate}</td>
-//   </tr>
-//   </tbody>
-//   </table>
-// ))}
+        const start = moment(checkInDate);
+        const end = moment(checkOutDate);
+
+        return (
+          <>
+            <tr
+              key={firstName}
+              className="table-row"
+              style={{ backgroundColor: isSelected === id && isOn && onColor }}
+              onClick={() => {
+                handleToggle();
+                selectRow(id);
+              }}
+            >
+              <td>{id}</td>
+              <td>{title}</td>
+              <td>{firstName}</td>
+              <td>{surname}</td>
+              <td>{email}</td>
+              <td>{roomId}</td>
+              <td>{checkInDate}</td>
+              <td>{checkOutDate}</td>
+              <td>{moment.duration(end.diff(start)).asDays()}</td>
+              <td>
+                <button className="btn btn-primary" onClick={handleToggle}>
+                  Show Profile
+                </button>
+              </td>
+            </tr>
+          </>
+        );
+      })}
+    </>
+  );
+};
 
 export default TableRows;

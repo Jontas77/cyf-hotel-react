@@ -41,18 +41,27 @@ const App = () => {
   const handleSubmit = e => {
     e.preventDefault();
     setData(value => [...value, state]);
+
+    setState({
+      id: "",
+      title: "",
+      firstName: "",
+      surname: "",
+      email: "",
+      roomId: "",
+      checkInDate: "",
+      checkOutDate: ""
+    });
     e.target.reset();
   };
 
-  const uniqueKeys = Math.floor(Math.random() * 1000000);
-
   return (
     <div className="App">
-      <Heading keys={uniqueKeys} />
+      <Heading />
       <div className="page-container">
-        <TouristInfoCards keys={uniqueKeys} />
-        <Bookings keys={uniqueKeys} formData={data} />
-        <Restaurant keys={uniqueKeys} />
+        <TouristInfoCards />
+        <Bookings formData={data} />
+        <Restaurant />
         <Form
           userData={state}
           handleChange={handleChange}
@@ -60,7 +69,7 @@ const App = () => {
           handleSubmit={handleSubmit}
         />
       </div>
-      <Footer details={hotelDetails} keys={uniqueKeys} />
+      <Footer details={hotelDetails} />
     </div>
   );
 };

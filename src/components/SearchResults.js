@@ -2,15 +2,47 @@ import React, { useState } from "react";
 import TableRows from "./TableRows";
 import CustomerProfile from "./CustomerProfile";
 
-const SearchResults = ({ details, keys, formData }) => {
+const SearchResults = ({ details, formData }) => {
   const [value, setValue] = useState(false);
   const [selected, setSelected] = useState("");
+  const [sort, setSort] = useState("default");
+
   const customerID = details.map(customer => customer.id);
 
+  const sortType = {
+    up: {
+      class: "A -> Z",
+      fn: (a, b) => (a.firstName < b.firstName ? -1 : 1)
+    },
+    down: {
+      class: "Z -> A",
+      fn: (a, b) => (b.firstName < a.firstName ? -1 : 1)
+    },
+    default: {
+      class: "Sort",
+      fn: (a, b) => a.firstName
+    }
+  };
+
+  const onSortChange = () => {
+    let nextSort;
+    if (sort === "down") {
+      nextSort = "up";
+    } else if (sort === "up") {
+      nextSort = "default";
+    } else if (sort === "default") {
+      nextSort = "down";
+    }
+    return setSort(nextSort);
+  };
+
   return (
-    <div className="table-responsive" key={keys}>
+    <div className="table-responsive">
+      <button className="btn btn-primary mb-2" onClick={onSortChange}>
+        {`${sortType[sort].class}`}
+      </button>
       {customerID.map(
-        id => selected === id && value && <CustomerProfile id={id} key={keys} />
+        id => selected === id && value && <CustomerProfile id={id} key={id} />
       )}
       <table className="table table-bordered">
         <thead>
@@ -27,7 +59,7 @@ const SearchResults = ({ details, keys, formData }) => {
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody key={keys}>
+        <tbody key={details.id}>
           <TableRows
             table={details}
             isOn={value}
@@ -36,7 +68,8 @@ const SearchResults = ({ details, keys, formData }) => {
             isSelected={selected}
             selectRow={id => setSelected(id)}
             formData={formData}
-            keys={keys}
+            sortType={sortType}
+            sort={sort}
           />
         </tbody>
       </table>
